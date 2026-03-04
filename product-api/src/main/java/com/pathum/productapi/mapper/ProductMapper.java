@@ -8,7 +8,6 @@ import org.springframework.stereotype.Component;
 @Component
 public class ProductMapper {
 
-    // Request DTO → Entity
     public Product toEntity(ProductRequestDto requestDto) {
         return Product.builder()
                 .name(requestDto.getName())
@@ -18,7 +17,6 @@ public class ProductMapper {
                 .build();
     }
 
-    // Entity → Response DTO
     public ProductResponseDto toResponseDto(Product product) {
         return ProductResponseDto.builder()
                 .id(product.getId())
@@ -31,7 +29,6 @@ public class ProductMapper {
                 .build();
     }
 
-    // Update existing entity
     public void updateEntityFromDto(ProductRequestDto requestDto, Product product) {
         product.setName(requestDto.getName());
         product.setDescription(requestDto.getDescription());

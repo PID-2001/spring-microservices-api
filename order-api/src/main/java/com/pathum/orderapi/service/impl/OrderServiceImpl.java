@@ -30,11 +30,9 @@ public class OrderServiceImpl implements OrderService {
     public OrderResponseDto createOrder(OrderRequestDto requestDto) {
         log.info("Creating order for productId: {}", requestDto.getProductId());
 
-        // Call product-api via Feign to validate product exists
         ProductResponseDto product = productClient
                 .getProductById(requestDto.getProductId());
 
-        // Check if enough stock is available
         if (product.getQuantity() < requestDto.getQuantity()) {
             throw new IllegalArgumentException(
                     "Insufficient stock. Available: " + product.getQuantity()
